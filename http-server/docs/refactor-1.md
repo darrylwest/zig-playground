@@ -7,4 +7,12 @@
 * create helpers for HTTP responses
 * add PATCH to http methods
 * add VERSION to config or main
+* test coverage?
+* a http client?
+* improved the logger to support log.info(), log.warn, etc.
+
+## Research
+
+* search for HTTP 3rd-party support/frameworks
+* create a library for REST routing and handling
 
