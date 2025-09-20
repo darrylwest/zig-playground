@@ -29,9 +29,9 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 
 **Web & Networking:**
 
-- **zap** - Fast HTTP server framework
+- **zap** - Fast HTTP server framework **try this**
   - https://github.com/zigzap/zap
-- **httpz** - HTTP server library
+- **httpz** - HTTP server library **try this**
   - https://github.com/karlseguin/http.zig
 - **zig-network** - Cross-platform networking
   - https://github.com/MasterQ32/zig-network
@@ -63,4 +63,4 @@ I'd recommend starting with **ziglings** if you're new to Zig - it's an excellen
 
 Many of these projects also serve as good examples of Zig's build system (`build.zig`) and package management.
 
-###### dpw | 2025.09.19
+###### dpw | 2025.09.20
