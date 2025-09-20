@@ -5,7 +5,7 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 **Learning Resources:**
 
 - **ziglings** - Interactive Zig exercises (perfect for beginners)
-  - https://github.com/ratfactor/ziglings
+  - https://codeberg.org/ziglings/exercises/#ziglings
 - **zig-learn** - Comprehensive Zig tutorial with examples
   - https://github.com/Sobeston/zig-learn
 
@@ -62,3 +62,5 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 I'd recommend starting with **ziglings** if you're new to Zig - it's an excellent hands-on way to learn the language. Then explore the CLI tools and games to see real-world Zig code in action. The **mach** engine is particularly impressive for seeing what's possible with Zig in graphics programming.
 
 Many of these projects also serve as good examples of Zig's build system (`build.zig`) and package management.
+
+###### dpw | 2025.09.19
