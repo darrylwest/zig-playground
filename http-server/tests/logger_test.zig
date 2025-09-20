@@ -50,3 +50,27 @@ test "logError function works" {
     logger.logError("Network error", error.NetworkUnreachable);
     logger.logError("File not found", error.FileNotFound);
 }
+
+test "Log level filtering works" {
+    // Test that setting log level filters appropriately
+    logger.setLogLevel(.WARN);
+
+    // These should be suppressed (but we can't easily test output suppression)
+    logger.log(.DEBUG, "This debug message should be suppressed", .{});
+    logger.log(.INFO, "This info message should be suppressed", .{});
+
+    // These should appear
+    logger.log(.WARN, "This warning should appear", .{});
+    logger.log(.ERROR, "This error should appear", .{});
+
+    // Reset to INFO for other tests
+    logger.setLogLevel(.INFO);
+}
+
+test "LogLevel fromString function works" {
+    try testing.expectEqual(logger.LogLevel.DEBUG, logger.LogLevel.fromString("DEBUG"));
+    try testing.expectEqual(logger.LogLevel.INFO, logger.LogLevel.fromString("INFO"));
+    try testing.expectEqual(logger.LogLevel.WARN, logger.LogLevel.fromString("WARN"));
+    try testing.expectEqual(logger.LogLevel.ERROR, logger.LogLevel.fromString("ERROR"));
+    try testing.expectEqual(logger.LogLevel.INFO, logger.LogLevel.fromString("INVALID")); // Default fallback
+}

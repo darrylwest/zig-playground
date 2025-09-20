@@ -58,9 +58,13 @@ fn parseConfigFromJson(allocator: std.mem.Allocator, config_path: []const u8) !C
 
     const json_config = parsed.value;
 
+    // Set logging level from config
+    logger.setLogLevelFromString(json_config.logging.level);
+
     logger.log(.INFO, "Loaded configuration from '{s}'", .{config_path});
     logger.log(.INFO, "  Host: {s}", .{json_config.server.host});
     logger.log(.INFO, "  Port: {}", .{json_config.server.port});
+    logger.log(.INFO, "  Log Level: {s}", .{json_config.logging.level});
 
     return Config{
         .host = try allocator.dupe(u8, json_config.server.host),
