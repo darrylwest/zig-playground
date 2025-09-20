@@ -21,6 +21,11 @@ pub fn main() !void {
     api.initApi();
     logger.log(.INFO, "API handlers initialized", .{});
 
+    // Log version on startup
+    const version = api.parseVersionFromZon(allocator) catch "unknown";
+    defer allocator.free(version);
+    logger.log(.INFO, "HTTP Server, Version: {s}", .{version});
+
     const address = std.net.Address.parseIp(SERVER_HOST, SERVER_PORT) catch |err| {
         logger.log(.ERROR, "Failed to parse server address", .{});
         return err;

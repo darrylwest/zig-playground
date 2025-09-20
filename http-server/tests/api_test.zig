@@ -35,12 +35,16 @@ test "API version endpoint returns version string" {
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 
+    // Get expected version from build.zig.zon
+    const expected_version = try api.parseVersionFromZon(allocator);
+    defer allocator.free(expected_version);
+
     const request = "GET /api/v1/version HTTP/1.1\r\nHost: localhost\r\n\r\n";
     const response = try api.handleVersion(allocator, request);
     defer allocator.free(response);
 
     try testing.expect(std.mem.indexOf(u8, response, "200 OK") != null);
-    try testing.expect(std.mem.indexOf(u8, response, "0.1.0") != null);
+    try testing.expect(std.mem.indexOf(u8, response, expected_version) != null);
     try testing.expect(std.mem.indexOf(u8, response, "text/plain") != null);
 }
 
