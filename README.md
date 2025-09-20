@@ -32,7 +32,7 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 
 **Web & Networking:**
 
-- **zap** - Fast HTTP server framework **try this**
+- **zap** - Fast HTTP server framework **try this, 3k stars**
   - https://github.com/zigzap/zap
 - **httpz** - HTTP server library **try this**
   - https://github.com/karlseguin/http.zig
