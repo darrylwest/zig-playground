@@ -11,6 +11,8 @@ pub const Method = enum {
     POST,
     PUT,
     DELETE,
+    PATCH,
+    OPTIONS,
 };
 
 pub fn parseRequest(request: []const u8) ?struct {
@@ -33,6 +35,10 @@ pub fn parseRequest(request: []const u8) ?struct {
         Method.PUT
     else if (std.mem.eql(u8, method_str, "DELETE"))
         Method.DELETE
+    else if (std.mem.eql(u8, method_str, "PATCH"))
+        Method.PATCH
+    else if (std.mem.eql(u8, method_str, "OPTIONS"))
+        Method.OPTIONS
     else
         return null;
 

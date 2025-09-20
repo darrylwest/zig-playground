@@ -70,8 +70,26 @@ test "Parse empty request returns null" {
     try testing.expect(parsed == null);
 }
 
+test "Parse valid PATCH request" {
+    const request = "PATCH /api/update HTTP/1.1\r\nHost: localhost:8080\r\nContent-Type: application/json\r\n\r\n";
+    const parsed = router.parseRequest(request);
+
+    try testing.expect(parsed != null);
+    try testing.expectEqual(router.Method.PATCH, parsed.?.method);
+    try testing.expectEqualStrings("/api/update", parsed.?.path);
+}
+
+test "Parse valid OPTIONS request" {
+    const request = "OPTIONS /api/cors HTTP/1.1\r\nHost: localhost:8080\r\n\r\n";
+    const parsed = router.parseRequest(request);
+
+    try testing.expect(parsed != null);
+    try testing.expectEqual(router.Method.OPTIONS, parsed.?.method);
+    try testing.expectEqualStrings("/api/cors", parsed.?.path);
+}
+
 test "Parse request with unknown method returns null" {
-    const request = "PATCH /api/test HTTP/1.1\r\nHost: localhost:8080\r\n\r\n";
+    const request = "UNKNOWN /api/test HTTP/1.1\r\nHost: localhost:8080\r\n\r\n";
     const parsed = router.parseRequest(request);
 
     try testing.expect(parsed == null);

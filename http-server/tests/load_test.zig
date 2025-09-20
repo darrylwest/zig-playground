@@ -109,6 +109,8 @@ test "Request parsing under high volume" {
         "POST /api/data HTTP/1.1\r\nContent-Type: application/json\r\n\r\n",
         "PUT /api/update HTTP/1.1\r\nAuthorization: Bearer token\r\n\r\n",
         "DELETE /api/delete HTTP/1.1\r\nUser-Agent: TestClient\r\n\r\n",
+        "PATCH /api/partial HTTP/1.1\r\nContent-Type: application/json\r\n\r\n",
+        "OPTIONS /api/cors HTTP/1.1\r\nOrigin: https://example.com\r\n\r\n",
         "GET /api/v1/status HTTP/1.1\r\nAccept: application/json\r\n\r\n",
     };
 
