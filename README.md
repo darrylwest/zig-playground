@@ -12,8 +12,8 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 
 **CLI Tools & Utilities:**
 
-**Awsome Zig**
- - https://github.com/zigcc/awesome-zig?tab=readme-ov-file
+- **Awsome Zig**
+  - https://github.com/zigcc/awesome-zig?tab=readme-ov-file
 - **zls** - Zig Language Server (official LSP implementation)
   - https://github.com/zigtools/zls
 - **zig-clap** - Command line argument parsing
@@ -41,6 +41,8 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 
 **System Programming:**
 
+- **Logging** - NexLog
+  - https://github.com/chrischtel/nexlog
 - **OkRedis** - Redis/Valkey client
   - https://github.com/kristoff-it/zig-okredis
 - **zig-sqlite** - SQLite wrapper
