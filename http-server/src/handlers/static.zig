@@ -26,20 +26,40 @@ pub fn serveStaticFile(allocator: std.mem.Allocator, file_path: []const u8) ![]c
     return response;
 }
 
-fn getMimeType(file_path: []const u8) []const u8 {
-    if (std.mem.endsWith(u8, file_path, ".html")) {
-        return "text/html";
-    } else if (std.mem.endsWith(u8, file_path, ".css")) {
-        return "text/css";
-    } else if (std.mem.endsWith(u8, file_path, ".js")) {
-        return "application/javascript";
-    } else if (std.mem.endsWith(u8, file_path, ".json")) {
-        return "application/json";
-    } else if (std.mem.endsWith(u8, file_path, ".png")) {
-        return "image/png";
-    } else if (std.mem.endsWith(u8, file_path, ".jpg") or std.mem.endsWith(u8, file_path, ".jpeg")) {
-        return "image/jpeg";
-    } else {
-        return "text/plain";
+const FileExtension = enum {
+    html,
+    css,
+    js,
+    json,
+    png,
+    jpg,
+    jpeg,
+
+    fn getMimeType(self: FileExtension) []const u8 {
+        return switch (self) {
+            .html => "text/html",
+            .css => "text/css",
+            .js => "application/javascript",
+            .json => "application/json",
+            .png => "image/png",
+            .jpg, .jpeg => "image/jpeg",
+        };
     }
+};
+
+fn getFileExtension(file_path: []const u8) ?[]const u8 {
+    if (std.mem.lastIndexOf(u8, file_path, ".")) |dot_index| {
+        return file_path[dot_index + 1..];
+    }
+    return null;
+}
+
+fn getMimeType(file_path: []const u8) []const u8 {
+    const extension = getFileExtension(file_path) orelse return "text/plain";
+
+    if (std.meta.stringToEnum(FileExtension, extension)) |ext| {
+        return ext.getMimeType();
+    }
+
+    return "text/plain";
 }

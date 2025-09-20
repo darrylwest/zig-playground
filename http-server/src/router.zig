@@ -27,20 +27,7 @@ pub fn parseRequest(request: []const u8) ?struct {
     const method_str = parts.next() orelse return null;
     const path = parts.next() orelse return null;
 
-    const method = if (std.mem.eql(u8, method_str, "GET"))
-        Method.GET
-    else if (std.mem.eql(u8, method_str, "POST"))
-        Method.POST
-    else if (std.mem.eql(u8, method_str, "PUT"))
-        Method.PUT
-    else if (std.mem.eql(u8, method_str, "DELETE"))
-        Method.DELETE
-    else if (std.mem.eql(u8, method_str, "PATCH"))
-        Method.PATCH
-    else if (std.mem.eql(u8, method_str, "OPTIONS"))
-        Method.OPTIONS
-    else
-        return null;
+    const method = std.meta.stringToEnum(Method, method_str) orelse return null;
 
     return .{
         .method = method,
