@@ -9,8 +9,11 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 - **zig-learn** - Comprehensive Zig tutorial with examples
   - https://github.com/Sobeston/zig-learn
 
+
 **CLI Tools & Utilities:**
 
+**Awsome Zig**
+ - https://github.com/zigcc/awesome-zig?tab=readme-ov-file
 - **zls** - Zig Language Server (official LSP implementation)
   - https://github.com/zigtools/zls
 - **zig-clap** - Command line argument parsing
