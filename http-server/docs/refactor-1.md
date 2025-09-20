@@ -10,6 +10,7 @@
 * test coverage?
 * a http client?
 * improved the logger to support log.info(), log.warn, etc.
+* add OkRedis to project and add get, set, del to the REST endpoints to act on redis/valkey
 
 ## Research
 

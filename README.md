@@ -38,6 +38,8 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 
 **System Programming:**
 
+- **OkRedis** - Redis/Valkey client
+  - https://github.com/kristoff-it/zig-okredis
 - **zig-sqlite** - SQLite wrapper
   - https://github.com/vrischmann/zig-sqlite
 - **ziglua** - Lua bindings for Zig
