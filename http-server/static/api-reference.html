@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - Zig HTTP Server</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>API Reference</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact Us</a></li>
+                <li><a href="/api-reference.html" class="active">API Reference</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>REST API Endpoints</h2>
+            <p>This server provides a simple REST API with the following endpoints. All endpoints use HTTP GET method and return either plain text or JSON responses.</p>
+        </section>
+
+        <section class="api-endpoint">
+            <h3>Health Check</h3>
+            <div class="endpoint-details">
+                <p><strong>URL:</strong> <code>/api/v1/health</code></p>
+                <p><strong>Method:</strong> GET</p>
+                <p><strong>Response Type:</strong> text/plain</p>
+                <p><strong>Description:</strong> Simple health check endpoint that returns "ok" when the server is running.</p>
+            </div>
+            <div class="endpoint-example">
+                <h4>Example Response:</h4>
+                <pre><code>ok</code></pre>
+                <p><a href="/api/v1/health">Try it now →</a></p>
+            </div>
+        </section>
+
+        <section class="api-endpoint">
+            <h3>Ping Test</h3>
+            <div class="endpoint-details">
+                <p><strong>URL:</strong> <code>/api/v1/ping</code></p>
+                <p><strong>Method:</strong> GET</p>
+                <p><strong>Response Type:</strong> text/plain</p>
+                <p><strong>Description:</strong> Connectivity test endpoint that responds with "PONG".</p>
+            </div>
+            <div class="endpoint-example">
+                <h4>Example Response:</h4>
+                <pre><code>PONG</code></pre>
+                <p><a href="/api/v1/ping">Try it now →</a></p>
+            </div>
+        </section>
+
+        <section class="api-endpoint">
+            <h3>Version Information</h3>
+            <div class="endpoint-details">
+                <p><strong>URL:</strong> <code>/api/v1/version</code></p>
+                <p><strong>Method:</strong> GET</p>
+                <p><strong>Response Type:</strong> text/plain</p>
+                <p><strong>Description:</strong> Returns the current server version in semantic versioning format.</p>
+            </div>
+            <div class="endpoint-example">
+                <h4>Example Response:</h4>
+                <pre><code>0.1.0</code></pre>
+                <p><a href="/api/v1/version">Try it now →</a></p>
+            </div>
+        </section>
+
+        <section class="api-endpoint">
+            <h3>Server Status</h3>
+            <div class="endpoint-details">
+                <p><strong>URL:</strong> <code>/api/v1/status</code></p>
+                <p><strong>Method:</strong> GET</p>
+                <p><strong>Response Type:</strong> application/json</p>
+                <p><strong>Description:</strong> Returns detailed server status information including uptime, session count, and current timestamp.</p>
+            </div>
+            <div class="endpoint-example">
+                <h4>Example Response:</h4>
+                <pre><code>{
+  "uptime": "3600",
+  "session_count": 42,
+  "timestamp": "2025-01-15T10:30:45Z"
+}</code></pre>
+                <p><a href="/api/v1/status">Try it now →</a></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Response Format</h2>
+            <ul>
+                <li><strong>Success:</strong> HTTP 200 OK with appropriate content type</li>
+                <li><strong>Not Found:</strong> HTTP 404 for invalid endpoints</li>
+                <li><strong>Method Not Allowed:</strong> HTTP 405 for unsupported HTTP methods</li>
+                <li><strong>Bad Request:</strong> HTTP 400 for malformed requests</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Usage Notes</h2>
+            <ul>
+                <li>All timestamps are in ISO 8601 format (UTC)</li>
+                <li>Uptime is measured in seconds since server start</li>
+                <li>Session count tracks total connections since server start</li>
+                <li>No authentication required for any endpoints</li>
+                <li>CORS headers are not currently implemented</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Zig HTTP Server Project</p>
+    </footer>
+</body>
+</html>

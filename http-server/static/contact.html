@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Zig HTTP Server</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html" class="active">Contact Us</a></li>
+                <li><a href="/api-reference.html">API Reference</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Get in Touch</h2>
+            <p>This is a demonstration project showcasing a HTTP server built with Zig. While this is not a commercial service, we'd love to hear your feedback about the implementation!</p>
+        </section>
+
+        <section>
+            <h2>Project Information</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Repository</h3>
+                    <p>Find the source code and documentation on our development repository.</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Issues & Feedback</h3>
+                    <p>Report bugs, suggest features, or share your thoughts about the Zig implementation.</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Learning Resources</h3>
+                    <p>Interested in learning Zig? Check out the official Zig documentation and community resources.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Server Status</h2>
+            <p>Current server information:</p>
+            <ul>
+                <li><strong>Version:</strong> 0.1.0</li>
+                <li><strong>Language:</strong> Zig 0.15.1</li>
+                <li><strong>Status:</strong> <a href="/api/v1/health">Check Health</a></li>
+                <li><strong>Live Stats:</strong> <a href="/api/v1/status">View JSON Status</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Quick Test</h2>
+            <p>Test the server functionality:</p>
+            <ul>
+                <li><a href="/api/v1/ping">Ping Test</a> - Simple connectivity test</li>
+                <li><a href="/api/v1/version">Version Check</a> - Get server version</li>
+                <li><a href="/api/v1/status">Status API</a> - JSON status with uptime</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Zig HTTP Server Project</p>
+    </footer>
+</body>
+</html>
