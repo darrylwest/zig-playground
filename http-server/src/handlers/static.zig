@@ -1,6 +1,23 @@
 const std = @import("std");
 const api = @import("api.zig");
 
+fn loadPartial(allocator: std.mem.Allocator, partial_name: []const u8) ![]u8 {
+    const partial_path = try std.fmt.allocPrint(allocator, "static/partials/{s}", .{partial_name});
+    defer allocator.free(partial_path);
+
+    const file = std.fs.cwd().openFile(partial_path, .{}) catch |err| switch (err) {
+        error.FileNotFound => return allocator.dupe(u8, ""),
+        else => return err,
+    };
+    defer file.close();
+
+    const file_size = try file.getEndPos();
+    const content = try allocator.alloc(u8, file_size);
+    _ = try file.readAll(content);
+
+    return content;
+}
+
 pub fn serveStaticFile(allocator: std.mem.Allocator, file_path: []const u8) ![]const u8 {
     const full_path = try std.fmt.allocPrint(allocator, "static{s}", .{file_path});
     defer allocator.free(full_path);
@@ -20,17 +37,38 @@ pub fn serveStaticFile(allocator: std.mem.Allocator, file_path: []const u8) ![]c
 
     const mime_type = getMimeType(file_path);
 
-    // Process HTML files to replace version placeholder
+    // Process HTML files to replace template placeholders
     const processed_content = if (std.mem.endsWith(u8, file_path, ".html")) blk: {
-        const version = api.parseVersionFromZon(allocator) catch "unknown";
-        defer allocator.free(version);
+        var current_content = try allocator.dupe(u8, content);
 
-        // Replace {{VERSION}} placeholder with actual version
-        if (std.mem.indexOf(u8, content, "{{VERSION}}")) |_| {
-            break :blk try std.mem.replaceOwned(u8, allocator, content, "{{VERSION}}", version);
-        } else {
-            break :blk try allocator.dupe(u8, content);
+        // Process partial placeholders ({{FOOTER}}, {{NAV}}, etc.)
+        const partials = [_]struct { placeholder: []const u8, file: []const u8 }{
+            .{ .placeholder = "{{FOOTER}}", .file = "footer.html" },
+            .{ .placeholder = "{{NAV}}", .file = "nav.html" },
+        };
+
+        for (partials) |partial| {
+            if (std.mem.indexOf(u8, current_content, partial.placeholder)) |_| {
+                const partial_content = loadPartial(allocator, partial.file) catch "";
+                defer allocator.free(partial_content);
+
+                const temp_content = try std.mem.replaceOwned(u8, allocator, current_content, partial.placeholder, partial_content);
+                allocator.free(current_content);
+                current_content = temp_content;
+            }
         }
+
+        // Process {{VERSION}} placeholder
+        if (std.mem.indexOf(u8, current_content, "{{VERSION}}")) |_| {
+            const version = api.parseVersionFromZon(allocator) catch "unknown";
+            defer allocator.free(version);
+
+            const temp_content = try std.mem.replaceOwned(u8, allocator, current_content, "{{VERSION}}", version);
+            allocator.free(current_content);
+            current_content = temp_content;
+        }
+
+        break :blk current_content;
     } else try allocator.dupe(u8, content);
     defer allocator.free(processed_content);
 
