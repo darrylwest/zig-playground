@@ -7,7 +7,7 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 - **ziglings** - Interactive Zig exercises (perfect for beginners)
   - https://codeberg.org/ziglings/exercises/#ziglings
 - **zig-learn** - Comprehensive Zig tutorial with examples
-  - https://github.com/Sobeston/zig-learn
+  - https://ziglang.org/learn/
 
 
 **CLI Tools & Utilities:**
@@ -70,4 +70,4 @@ I'd recommend starting with **ziglings** if you're new to Zig - it's an excellen
 
 Many of these projects also serve as good examples of Zig's build system (`build.zig`) and package management.
 
-###### dpw | 2025.09.20
+###### dpw | 2025.09.21
