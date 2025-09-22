@@ -1,4 +1,5 @@
 const std = @import("std");
+const color = @import("zig-color");
 const router = @import("router.zig");
 const api = @import("handlers/api.zig");
 const static = @import("handlers/static.zig");
@@ -116,7 +117,21 @@ pub fn main() !void {
     defer listener.deinit();
 
     logger.logServerStart(config.port);
-    std.debug.print("HTTP server running on http://{s}:{}\n", .{ config.host, config.port });
+
+    // Enhanced startup message with colors
+    const color_support = color.ColorSupport.init();
+    const server_msg = try color_support.green("✅ HTTP server running on", allocator);
+    defer allocator.free(server_msg);
+
+    std.debug.print("{s} ", .{server_msg});
+
+    // Create buffered writer for stdout
+    var stdout_buffer: [1024]u8 = undefined;
+    var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
+    const stdout = &stdout_writer.interface;
+
+    try color_support.printYellow(stdout, "http://{s}:{}\n", .{ config.host, config.port });
+    try stdout.flush();
 
     while (true) {
         const connection = listener.accept() catch {

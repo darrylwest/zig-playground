@@ -1,9 +1,1 @@
-{
-  "server": {
-    "host": "127.0.0.1",
-    "port": 9043
-  },
-  "logging": {
-    "level": "INFO"
-  }
-}
+{"server":{"host":"127.0.0.1","port":8080},"logging":{"level":"INFO"}}
