@@ -6,9 +6,25 @@ We use the playground as a starting point for learning **zig**.  Zig examples de
 
 The **util** folder contains simple single-file demonstraction scripts.  It has a build script, **build.zig**, tuned for single-file compilation.  Scripts include...
 
+### Currently Implemented
+
 - Basic "Hello World" program (`hello.zig`)
 - String literals and Unicode handling (`string_literals.zig`)
 - Value types, optionals, and error unions (`values.zig`)
+
+### Planned
+
+- array list
+- maps
+- structs, unions
+- datetime utils
+- task runner
+- random number generation
+- CLI args
+- colors
+- base62
+- proxy
+- unix sockets
 
 ### Build Configuration
 
