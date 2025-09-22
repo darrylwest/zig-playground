@@ -24,9 +24,9 @@ pub fn build(b: *std.Build) void {
             }),
         });
 
-        // Install to zig-bin/bin/
+        // Install to bin/
         const install_exe = b.addInstallArtifact(exe, .{
-            .dest_dir = .{ .override = .{ .custom = "zig-bin/bin" } },
+            .dest_dir = .{ .override = .{ .custom = "bin" } },
         });
 
         b.getInstallStep().dependOn(&install_exe.step);
