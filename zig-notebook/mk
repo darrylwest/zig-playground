@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# dpw@larkspur.localdomain
+# 2025-09-22 15:03:00
+#
+
+set -eu
+
+mdbook build
+
+ls -la book
