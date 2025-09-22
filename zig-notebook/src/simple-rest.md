@@ -43,4 +43,22 @@ Add minimal unit tests with **std.testing** framework
 4. agree on a plan
 5. implement the plan
 
+## Final Product
+
+The service runs on the **host** and **port** as specified in a **config.json** file.  The home page shows the API Endpoints with links to exercise each one.  End points include:
+
+- /api/v1/health - health check
+- /api/v1/ping - returns PONG
+- /api/v1/version - returns current version as specified in the **build.zig.zon** file
+- /api/v1/status - returns uptime, number of accesses, current timestamp etc.
+
+Static pages include About, Contact Us, and API Reference.
+
+## Next Steps
+
+- [ ] research 3rd-party HTTP server frameworks
+- [ ] create a library to support the creation of simple REST servers
+- [ ] find 3rd-party logger
+- [ ] add a **contact form** to Contact Us page to capture first, last, and email address.
+
 ###### dpw | 2025.09.22
