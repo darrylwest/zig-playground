@@ -240,3 +240,10 @@ For production use, consider adding:
 - Rate limiting
 - TLS/HTTPS support
 - Multi-threading for CPU-intensive operations
+
+## License
+
+MIT
+
+###### dpw | 2025.09.20
+

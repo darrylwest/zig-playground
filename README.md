@@ -7,13 +7,17 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 - **ziglings** - Interactive Zig exercises (perfect for beginners)
   - https://codeberg.org/ziglings/exercises/#ziglings
 - **zig-learn** - Comprehensive Zig tutorial with examples
-  - https://github.com/Sobeston/zig-learn
+  - https://ziglang.org/learn/
+- **zig book** - github project
+  - https://pedropark99.github.io/zig-book/
+- **zig dev** - forum site
+  - https://ziggit.dev/
 
 
 **CLI Tools & Utilities:**
 
-**Awsome Zig**
- - https://github.com/zigcc/awesome-zig?tab=readme-ov-file
+- **Awsome Zig**
+  - https://github.com/zigcc/awesome-zig?tab=readme-ov-file
 - **zls** - Zig Language Server (official LSP implementation)
   - https://github.com/zigtools/zls
 - **zig-clap** - Command line argument parsing
@@ -32,7 +36,7 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 
 **Web & Networking:**
 
-- **zap** - Fast HTTP server framework **try this**
+- **zap** - Fast HTTP server framework **try this, 3k stars**
   - https://github.com/zigzap/zap
 - **httpz** - HTTP server library **try this**
   - https://github.com/karlseguin/http.zig
@@ -41,6 +45,8 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 
 **System Programming:**
 
+- **Logging** - NexLog
+  - https://github.com/chrischtel/nexlog
 - **OkRedis** - Redis/Valkey client
   - https://github.com/kristoff-it/zig-okredis
 - **zig-sqlite** - SQLite wrapper
@@ -68,4 +74,4 @@ I'd recommend starting with **ziglings** if you're new to Zig - it's an excellen
 
 Many of these projects also serve as good examples of Zig's build system (`build.zig`) and package management.
 
-###### dpw | 2025.09.20
+###### dpw | 2025.09.22
