@@ -1,8 +1,6 @@
 # Zig Playground
 
-## Introduction
-
-We will use the playground as a starting point for learning **zig**.  Zig examples demonstate control flows, language basics, types, etc.  There is also a build configuration created to support single-file scripts.
+We use the playground as a starting point for learning **zig**.  Zig examples demonstate control flows, language basics, types, etc.  There is also a build configuration created to support single-file scripts.
 
 ## Utilities
 
@@ -12,7 +10,7 @@ The **util** folder contains simple single-file demonstraction scripts.  It has 
 - String literals and Unicode handling (`string_literals.zig`)
 - Value types, optionals, and error unions (`values.zig`)
 
-### Configure
+### Build Configuration
 
 The build file is **build.zig** and contains a list of files to be compiled.  Output is written to **zig-out/bin**.
 
@@ -21,8 +19,6 @@ The build file is **build.zig** and contains a list of files to be compiled.  Ou
 3. Compiles each discovered file into separate executables in zig-out/bin/
 
 To extend, simply add a new **zig** file and run **zig build** to compile. *No build.zip changes are required.*
-
-## REST Service Project
 
 
 ###### dpw | 2025.09.22

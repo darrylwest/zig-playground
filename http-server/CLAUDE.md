@@ -14,16 +14,19 @@ This is a Zig HTTP server project that aims to build a complete web server using
 ## Development Setup
 
 ### Zig Version
+
 - Project uses Zig 0.15.1
 - Verify version with: `zig version`
 
 ### Project Initialization
+
 The project hasn't been initialized yet. To start development:
 ```bash
 zig init
 ```
 
 ### Build Commands
+
 Once initialized, standard Zig commands will be:
 ```bash
 # Build the project
@@ -45,17 +48,20 @@ zig build -Doptimize=ReleaseFast
 ## Project Architecture
 
 ### Required REST Endpoints
+
 - `/api/v1/health` - returns "ok"
 - `/api/v1/ping` - returns "PONG"
 - `/api/v1/status` - returns JSON with uptime, session_count, timestamp
 - `/api/v1/version` - returns application version (major.minor.patch)
 
 ### Static Pages Structure
+
 - Landing page with header, body, footer sections
 - Navigation to About, Contact Us, API Reference pages
 - Minimal CSS styling
 
 ### Core Components
+
 - HTTP server using `std.http`
 - Static file serving
 - JSON response handling
@@ -65,6 +71,7 @@ zig build -Doptimize=ReleaseFast
 ## Testing Strategy
 
 Use Zig's built-in `std.testing` framework for unit tests. Test coverage should include:
+
 - API endpoint responses
 - JSON serialization/deserialization
 - Static file serving
