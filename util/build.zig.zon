@@ -1,0 +1,12 @@
+.{
+    .name = .util,
+    .version = "0.15.1",
+    .dependencies = .{
+        .zig_color = .{
+            .url = "https://github.com/darrylwest/zig-color-lib/archive/refs/tags/v0.2.1.tar.gz",
+            .hash = "zig_color-0.2.1-aYS9O2RwAABXEx_tnrTgEepCwTRvIbsmRcXTumarkW24",
+        },
+    },
+    .paths = .{""},
+    .fingerprint = 0xde66b2a3649df547,
+}
