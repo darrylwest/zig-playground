@@ -16,17 +16,17 @@ This is a Zig utilities playground project containing educational examples demon
 
 ### Build Commands
 
-- `zig build` - Compiles all .zig files and places executables in `zig-out/zig-bin/bin/`
+- `zig build` - Automatically discovers and compiles all .zig files, placing executables in `zig-out/bin/`
 - `zig run <filename>.zig` - Compile and run a single Zig file directly
 
 ### Build Configuration
 
 The `build.zig` script automatically:
-- Finds all .zig files in the root directory
-- Creates individual executables for each file
-- Installs them to `zig-out/zig-bin/bin/` with the base filename as the executable name
+- Scans the current directory for all .zig files (excluding build.zig)
+- Creates individual executables for each discovered file
+- Installs them to `zig-out/bin/` with the base filename as the executable name
 
-When adding new .zig files, update the `zig_files` array in `build.zig:8-12`.
+No manual file list maintenance required - simply add new .zig files to the directory and run `zig build`.
 
 ## Project Structure
 
@@ -37,7 +37,7 @@ When adding new .zig files, update the `zig_files` array in `build.zig:8-12`.
 ├── string_literals.zig # String and Unicode demonstrations
 ├── values.zig         # Value types, optionals, error unions
 └── zig-out/           # Build output directory
-    └── zig-bin/bin/   # Compiled executables
+    └── bin/           # Compiled executables
 ```
 
 ## Development Notes
