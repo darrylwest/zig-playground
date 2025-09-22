@@ -11,34 +11,32 @@ pub const ColorSupport = struct {
     }
     
     fn detectColorSupport() bool {
-        // Check if we're on a TTY
-        if (!std.io.getStdOut().isTty()) {
+        // Check environment variables first
+        if (std.posix.getenv("NO_COLOR")) |_| {
             return false;
         }
-        
-        // Check environment variables
-        if (std.os.getenv("NO_COLOR")) |_| {
-            return false;
-        }
-        
-        if (std.os.getenv("FORCE_COLOR")) |_| {
+
+        if (std.posix.getenv("FORCE_COLOR")) |_| {
             return true;
         }
-        
-        if (std.os.getenv("TERM")) |term| {
+
+        if (std.posix.getenv("TERM")) |term| {
             if (std.mem.eql(u8, term, "dumb")) {
                 return false;
             }
         }
-        
-        // On Windows, check for newer terminal support
+
+        // On Windows, assume color support
         if (builtin.os.tag == .windows) {
-            // Windows 10 version 1607 and later support ANSI
-            // This is a simplified check
             return true;
         }
-        
-        return true;
+
+        // For Unix-like systems, assume color support if TERM is set
+        if (std.posix.getenv("TERM")) |_| {
+            return true;
+        }
+
+        return false;
     }
     
     pub fn colorize(self: *const ColorSupport, color: []const u8, text: []const u8, allocator: std.mem.Allocator) ![]u8 {
@@ -76,19 +74,18 @@ pub fn main() !void {
     const allocator = gpa.allocator();
     
     const color_support = ColorSupport.init();
-    const stdout = std.io.getStdOut().writer();
-    
+
     if (color_support.enabled) {
-        try stdout.print("Color support is enabled!\n", .{});
+        std.debug.print("Color support is enabled!\n", .{});
     } else {
-        try stdout.print("Color support is disabled.\n", .{});
+        std.debug.print("Color support is disabled.\n", .{});
     }
-    
+
     const red_text = try color_support.red("This might be red!", allocator);
     defer allocator.free(red_text);
-    try stdout.print("{s}\n", .{red_text});
-    
+    std.debug.print("{s}\n", .{red_text});
+
     const green_text = try color_support.green("This might be green!", allocator);
     defer allocator.free(green_text);
-    try stdout.print("{s}\n", .{green_text});
+    std.debug.print("{s}\n", .{green_text});
 }
