@@ -5,3 +5,4 @@
 - [Simple REST Service](./simple-rest.md)
 - [Terminal Color Lib](./color-lib.md)
 - [Iterationis](./iterations.md)
+- [HTTP Client](./http-client.md)
