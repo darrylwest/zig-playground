@@ -5,6 +5,16 @@
 
 set -eu
 
-mdbook build
-
-ls -la book
+while [[ $# -gt 0 ]]
+do 
+    case $1 in
+        run)
+            mdbook serve --hostname 0.0.0.0
+            shift
+            ;;
+        *)
+            mdbook build
+            shift
+            ;;
+    esac
+done

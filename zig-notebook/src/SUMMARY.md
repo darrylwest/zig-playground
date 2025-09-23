@@ -3,3 +3,4 @@
 - [Introduction](./introduction.md)
 - [Playground](./playground.md)
 - [Simple REST Service](./simple-rest.md)
+- [Terminal Color Lib](./color-lib.md)
