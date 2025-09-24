@@ -14,7 +14,7 @@ pub fn main() !void {
     defer client.deinit();
 
     // Parse the URL
-    const uri = try std.Uri.parse("https://jsonplaceholder.typicode.com/todos/1");
+    const uri = try std.Uri.parse("https://jsonplaceholder.typicode.com/todos/3");
     print("Making request to: https://jsonplaceholder.typicode.com/todos/1\n", .{});
 
     // Using std.Io.Writer.Allocating to capture the response body in Zig 0.15.1
