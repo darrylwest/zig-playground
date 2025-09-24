@@ -17,29 +17,25 @@ pub fn main() !void {
     const uri = try std.Uri.parse("https://jsonplaceholder.typicode.com/todos/1");
     print("Making request to: https://jsonplaceholder.typicode.com/todos/1\n", .{});
 
-    // Use fetch API and then try to get the body using a different approach
+    // Using std.Io.Writer.Allocating to capture the response body in Zig 0.15.1
+    var response_writer = std.Io.Writer.Allocating.init(allocator);
+    defer response_writer.deinit();
+
     const result = try client.fetch(.{
         .location = .{ .uri = uri },
         .method = .GET,
+        .response_writer = &response_writer.writer,
     });
 
     print("Status: {}\n", .{result.status});
     print("Request completed successfully!\n", .{});
 
-    // For now, let's demonstrate with a sample JSON response since the body access is complex
-    const sample_todo_json =
-        \\{
-        \\  "userId": 1,
-        \\  "id": 1,
-        \\  "title": "delectus aut autem",
-        \\  "completed": false
-        \\}
-    ;
+    // Get the actual response body from the writer
+    const response_body = response_writer.written();
+    print("\nResponse Body ({} bytes):\n{s}\n", .{ response_body.len, response_body });
 
-    print("\nSimulated Response Body (actual request was made to the API):\n{s}\n", .{sample_todo_json});
-
-    // Parse the sample JSON to demonstrate the parsing functionality
-    const parsed = std.json.parseFromSlice(std.json.Value, allocator, sample_todo_json, .{}) catch |err| {
+    // Parse the JSON response
+    const parsed = std.json.parseFromSlice(std.json.Value, allocator, response_body, .{}) catch |err| {
         print("Failed to parse JSON: {}\n", .{err});
         return;
     };
