@@ -123,7 +123,7 @@ pub fn main() !void {
     const server_msg = try color_support.green("✅ HTTP server running on", allocator);
     defer allocator.free(server_msg);
 
-    std.debug.print("{s}, Version: {s} ", .{server_msg, version});
+    std.debug.print("{s}, Version: {s} ", .{ server_msg, version });
 
     // Create buffered writer for stdout
     var stdout_buffer: [1024]u8 = undefined;

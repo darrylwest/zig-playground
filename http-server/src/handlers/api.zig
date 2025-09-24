@@ -9,16 +9,12 @@ pub fn initApi() void {
 
 pub fn handleHealth(allocator: std.mem.Allocator, request: []const u8) ![]const u8 {
     _ = request;
-    return try std.fmt.allocPrint(allocator,
-        "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 2\r\n\r\nok", .{}
-    );
+    return try std.fmt.allocPrint(allocator, "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 2\r\n\r\nok", .{});
 }
 
 pub fn handlePing(allocator: std.mem.Allocator, request: []const u8) ![]const u8 {
     _ = request;
-    return try std.fmt.allocPrint(allocator,
-        "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 4\r\n\r\nPONG", .{}
-    );
+    return try std.fmt.allocPrint(allocator, "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 4\r\n\r\nPONG", .{});
 }
 
 pub fn parseVersionFromZon(allocator: std.mem.Allocator) ![]const u8 {
@@ -51,10 +47,7 @@ pub fn handleVersion(allocator: std.mem.Allocator, request: []const u8) ![]const
     const version = parseVersionFromZon(allocator) catch "0.0.0";
     defer allocator.free(version);
 
-    return try std.fmt.allocPrint(allocator,
-        "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {}\r\n\r\n{s}",
-        .{ version.len, version }
-    );
+    return try std.fmt.allocPrint(allocator, "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {}\r\n\r\n{s}", .{ version.len, version });
 }
 
 pub fn handleStatus(allocator: std.mem.Allocator, request: []const u8) ![]const u8 {
@@ -71,23 +64,13 @@ pub fn handleStatus(allocator: std.mem.Allocator, request: []const u8) ![]const 
     const year_day = epoch_day.calculateYearDay();
     const month_day = year_day.calculateMonthDay();
 
-    const timestamp = try std.fmt.allocPrint(allocator,
-        "{:04}-{:02}-{:02}T{:02}:{:02}:{:02}Z",
-        .{ year_day.year, month_day.month.numeric(), month_day.day_index + 1,
-           day_seconds.getHoursIntoDay(), day_seconds.getMinutesIntoHour(), day_seconds.getSecondsIntoMinute() }
-    );
+    const timestamp = try std.fmt.allocPrint(allocator, "{:04}-{:02}-{:02}T{:02}:{:02}:{:02}Z", .{ year_day.year, month_day.month.numeric(), month_day.day_index + 1, day_seconds.getHoursIntoDay(), day_seconds.getMinutesIntoHour(), day_seconds.getSecondsIntoMinute() });
     defer allocator.free(timestamp);
 
-    const json_body = try std.fmt.allocPrint(allocator,
-        "{{\"uptime\":\"{}\",\"session_count\":{},\"timestamp\":\"{s}\"}}",
-        .{ uptime, session_count, timestamp }
-    );
+    const json_body = try std.fmt.allocPrint(allocator, "{{\"uptime\":\"{}\",\"session_count\":{},\"timestamp\":\"{s}\"}}", .{ uptime, session_count, timestamp });
     defer allocator.free(json_body);
 
-    return try std.fmt.allocPrint(allocator,
-        "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: {}\r\n\r\n{s}",
-        .{ json_body.len, json_body }
-    );
+    return try std.fmt.allocPrint(allocator, "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: {}\r\n\r\n{s}", .{ json_body.len, json_body });
 }
 
 pub fn incrementSessionCount() void {

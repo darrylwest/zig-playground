@@ -72,10 +72,7 @@ pub fn serveStaticFile(allocator: std.mem.Allocator, file_path: []const u8) ![]c
     } else try allocator.dupe(u8, content);
     defer allocator.free(processed_content);
 
-    const response = try std.fmt.allocPrint(allocator,
-        "HTTP/1.1 200 OK\r\nContent-Type: {s}\r\nContent-Length: {}\r\n\r\n{s}",
-        .{ mime_type, processed_content.len, processed_content }
-    );
+    const response = try std.fmt.allocPrint(allocator, "HTTP/1.1 200 OK\r\nContent-Type: {s}\r\nContent-Length: {}\r\n\r\n{s}", .{ mime_type, processed_content.len, processed_content });
 
     return response;
 }
@@ -103,7 +100,7 @@ const FileExtension = enum {
 
 fn getFileExtension(file_path: []const u8) ?[]const u8 {
     if (std.mem.lastIndexOf(u8, file_path, ".")) |dot_index| {
-        return file_path[dot_index + 1..];
+        return file_path[dot_index + 1 ..];
     }
     return null;
 }

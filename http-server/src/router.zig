@@ -45,8 +45,5 @@ pub fn createResponse(status_code: u16, content_type: []const u8, body: []const 
     };
 
     const allocator = std.heap.page_allocator;
-    return std.fmt.allocPrint(allocator,
-        "HTTP/1.1 {} {s}\r\nContent-Type: {s}\r\nContent-Length: {}\r\n\r\n{s}",
-        .{ status_code, status_text, content_type, body.len, body }
-    );
+    return std.fmt.allocPrint(allocator, "HTTP/1.1 {} {s}\r\nContent-Type: {s}\r\nContent-Length: {}\r\n\r\n{s}", .{ status_code, status_text, content_type, body.len, body });
 }
