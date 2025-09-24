@@ -15,7 +15,8 @@ pub fn build(b: *std.Build) void {
     while (iterator.next() catch return) |entry| {
         if (entry.kind == .file and
             std.mem.endsWith(u8, entry.name, ".zig") and
-            !std.mem.eql(u8, entry.name, "build.zig")) {
+            !std.mem.eql(u8, entry.name, "build.zig"))
+        {
             const owned_name = b.allocator.dupe(u8, entry.name) catch return;
             zig_files.append(b.allocator, owned_name) catch return;
         }
