@@ -70,8 +70,26 @@ Some Zig projects on GitHub to explore, ranging from beginner-friendly to advanc
 - **river** - Dynamic Wayland compositor
   - https://github.com/riverwm/river
 
-I'd recommend starting with **ziglings** if you're new to Zig - it's an excellent hands-on way to learn the language. Then explore the CLI tools and games to see real-world Zig code in action. The **mach** engine is particularly impressive for seeing what's possible with Zig in graphics programming.
-
 Many of these projects also serve as good examples of Zig's build system (`build.zig`) and package management.
 
-###### dpw | 2025.09.22
+**zig book proposed entries**
+
+* array list
+* maps
+* structs, unions
+* datetime
+* task runner
+* crypto/random lib
+* CLI parser
+* base62 encode/decode
+* level 4 and 7 proxy
+* unix sockets
+
+
+**zig projects**
+
+* zig-request -- HTTP client library
+* domain keys -- microsecond based keys encoded to base62
+
+###### dpw | 2025.09.23
+
