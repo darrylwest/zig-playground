@@ -30,5 +30,3 @@ Completed: false
 ```
 
 ###### dpw | 2025.09.23
-
-
